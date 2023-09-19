@@ -1,0 +1,79 @@
+name: Pull Request
+
+on:
+  pull_request:
+    paths:
+      - '.github/actions/**'
+      - '.github/workflows/**'
+      - 'code/**'
+
+env:
+  node-version: 18.x
+  working-directory: ./code
+
+jobs:
+  format:
+    name: Run linting & formatting
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+      cancel-in-progress: true
+
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Use Node.js ${{ env.node-version }}
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: Install Node modules
+        uses: ./.github/actions/install-node-modules
+
+      - name: Format code
+        uses: ./.github/actions/format-code
+
+      - name: Commit & push format changes
+        uses: ./.github/actions/commit-push-code
+        with:
+          commit-message: 'style: apply formatting'
+
+  test:
+    name: Run type checking & tests
+    runs-on: ubuntu-latest
+    needs: format
+
+    concurrency:
+      group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }} - ${{ matrix.node-version }}'
+      cancel-in-progress: true
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Node modules
+        uses: ./.github/actions/install-node-modules
+
+      - name: Run tests (Vitest)
+        uses: ./.github/actions/run-tests

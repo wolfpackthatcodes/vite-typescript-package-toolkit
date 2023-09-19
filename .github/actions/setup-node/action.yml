@@ -1,0 +1,30 @@
+name: Setup Node
+
+description: Setup a Node.js environment.
+
+inputs:
+  node-version:
+    description: Specifies the version spec of the Node version to use.
+    required: true
+
+  registry-url:
+    description: Specifies the npm registry for the package.
+    required: false
+    default: ''
+
+  scope:
+    description: Specifies the scope for authenticating against scoped registries.
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Use Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'yarn'
+        cache-dependency-path: ${{ env.working-directory }}
+        registry-url: ${{ inputs.registry-url }}
+        scope: ${{ inputs.scope }}

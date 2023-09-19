@@ -1,0 +1,42 @@
+name: Commit & push code
+
+description: Detect changed files during a workflow and commit and push the changes.
+
+inputs:
+  commit-message:
+    description: Commit message for the created commit.
+    required: true
+
+  user-email:
+    description: Email address used for the commit user.
+    required: false
+    default: "41898282+github-actions[bot]@users.noreply.github.com"
+
+  user-name:
+    description: Name used for the commit user.
+    required: false
+    default: "github-actions[bot]"
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check if files have changed
+      id: git-status
+      shell: bash
+      run: |
+        if [[ -n "$(git status --porcelain)" ]]; then
+          echo "files-changed=1" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Setup Git config
+      if: ${{ steps.git-status.outputs.files-changed }}
+      shell: bash
+      run: |
+        git config user.name ${{ inputs.user-name }}
+        git config user.email ${{ inputs.user-email }}
+
+    - name:  Commit & push file changes
+      if: ${{ steps.git-status.outputs.files-changed }}
+      shell: bash
+      run: |
+        git add . && git commit -m "${{ inputs.commit-message }}" && git push

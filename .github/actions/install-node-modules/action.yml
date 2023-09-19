@@ -1,0 +1,11 @@
+name: Install Node modules
+
+description: Validate a project when using Zero-Installs.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Node modules
+      shell: bash
+      working-directory: ${{ env.working-directory }}
+      run: yarn install --immutable --immutable-cache --check-cache --prefer-offline

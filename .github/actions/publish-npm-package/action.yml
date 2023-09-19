@@ -1,0 +1,19 @@
+name: Publish npm package to registry
+
+description: Publish npm package to respective registry.
+
+inputs:
+  access:
+    description: Specifies the npm registry publishes this package as a public package, or restricted.
+    required: false
+    default: public
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Publish the package
+      shell: bash
+      working-directory: ${{ env.working-directory }}
+      run: yarn publish --access ${{ inputs.access }}
+      env:
+        NODE_AUTH_TOKEN: ${{ env.NODE_AUTH_TOKEN }}

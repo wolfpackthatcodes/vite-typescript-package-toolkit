@@ -1,0 +1,16 @@
+name: Format code
+
+description: Format code with formatters and linters.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run ESLint
+      shell: bash
+      working-directory: ${{ env.working-directory }}
+      run: yarn run lint:fix
+
+    - name: Run Prettier
+      shell: bash
+      working-directory: ${{ env.working-directory }}
+      run: yarn run format:style

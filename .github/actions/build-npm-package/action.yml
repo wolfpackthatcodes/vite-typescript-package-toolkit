@@ -1,0 +1,15 @@
+name: Build npm package
+
+description: Perform build tasks for npm package.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build npm package
+      shell: bash
+      working-directory: ${{ env.working-directory }}
+      run: yarn run build
+
+    - name: Copy additional project files
+      shell: bash
+      run: cp -r images/ LICENSE CHANGELOG.md README.md ${{ env.working-directory }}/

@@ -1,0 +1,68 @@
+name: Publish to GitHub Packages
+
+on:
+  release:
+    types: [published]
+
+env:
+  node-version: 18.x
+  working-directory: ./code
+
+jobs:
+  test:
+    name: Run type checking & tests
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.node-version }}
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: Install Node modules
+        uses: ./.github/actions/install-node-modules
+
+      - name: Run tests (Vitest)
+        uses: ./.github/actions/run-tests
+
+  build:
+    name: Build & publish package
+    runs-on: ubuntu-latest
+    needs: test
+
+    concurrency:
+      group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
+      cancel-in-progress: true
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout the Git repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.node-version }}
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ env.node-version }}
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: '@wolfpackthatcodes'
+
+      - name: Install Node modules
+        uses: ./.github/actions/install-node-modules
+
+      - name: Build npm package
+        uses: ./.github/actions/build-npm-package
+
+      - name: Publish the package to GitHub Packages
+        uses: ./.github/actions/publish-npm-package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

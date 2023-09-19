@@ -1,0 +1,11 @@
+name: Run tests
+
+description: Run project's unit tests using Vite-native unit test framework.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run unit tests
+      shell: bash
+      working-directory: ${{ env.working-directory }}
+      run: yarn run test:ci
