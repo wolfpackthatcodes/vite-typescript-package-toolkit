@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "yoavbls.pretty-ts-errors",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "steoates.autoimport",
+    "ms-azuretools.vscode-docker",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "redhat.vscode-yaml"
+  ]
+}

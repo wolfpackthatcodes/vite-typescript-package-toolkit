@@ -1,0 +1,14 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.rulers": [80, 120],
+  "editor.wordWrap": "on",
+  "eslint.format.enable": true,
+  "eslint.workingDirectories": ["./code"],
+  "files.associations": {
+    ".env": "dotenv"
+  },
+  "prettier.configPath": "./code/.prettierrc",
+  "prettier.ignorePath": "./code/.prettierignore",
+  "prettier.printWidth": 120
+}

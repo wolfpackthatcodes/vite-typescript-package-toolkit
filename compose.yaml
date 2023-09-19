@@ -1,0 +1,42 @@
+---
+#--------------------------------------------------------------------------
+# ! The Docker Compose file is configured for local environments.
+# ! Do not deploy the Docker Compose file in production environments.
+#--------------------------------------------------------------------------
+
+# Docker compose version - https://docs.docker.com/compose/compose-file
+version: '3.9'
+
+# Sets the project name.
+name: vite-toolkit
+
+# The Docker services.
+services:
+  # The Vite app container.
+  vite:
+    # https://hub.docker.com/_/node
+    image: node:alpine
+    container_name: ${APP_CONTAINER_NAME:-vite-toolkit_app}
+    networks:
+      - local
+    # Map the app container exposed port to the host port.
+    ports:
+      - ${APP_PORT:-51204}:${APP_PORT:-51204}
+    stdin_open: true
+    tty: true
+    volumes:
+      - .${CODE_DIR:-/code}:/app
+    working_dir: /app
+    # Start the Vite UI dev server.
+    # prettier-ignore
+    command: [
+      'yarn', 'run', 'test:ui',
+      '--api.port', '${APP_PORT:-51204}',
+      '--api.host', '0.0.0.0',
+    ]
+
+# The Docker networks.
+networks:
+  local:
+    driver: 'bridge'
+    name: '${NETWORK_NAME:-vite-toolkit_local}'
