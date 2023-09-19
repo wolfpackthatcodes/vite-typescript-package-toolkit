@@ -1,0 +1,77 @@
+{
+  "name": "@wolfpackthatcodes/package-name",
+  "description": "Package description",
+  "version": "0.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/wolfpackthatcodes/vite-typescript-package-toolkit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wolfpackthatcodes/vite-typescript-package-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wolfpackthatcodes/vite-typescript-package-toolkit/issues/new/choose"
+  },
+  "author": {
+    "name": "Luis Aveiro",
+    "email": "support@luisaveiro.io"
+  },
+  "keywords": [
+    "wolfpackthatcodes",
+    "vite",
+    "typescript",
+    "package",
+    "toolkit"
+  ],
+  "type": "module",
+  "main": "./dist/package-name.umd.cjs",
+  "module": "./dist/package-name.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/package-name.js",
+      "require": "./dist/package-name.umd.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "images",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "yarn run lint --fix",
+    "format:style": "prettier . --write",
+    "test": "tsc && vitest watch",
+    "test:ci": "tsc && vitest run",
+    "test:coverage": "yarn run test --coverage",
+    "test:ui": "yarn run test --ui --coverage --open=false"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@vitest/coverage-v8": "^0.34.4",
+    "@vitest/ui": "^0.34.4",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.3",
+    "vitest": "^0.34.4"
+  },
+  "engines": {
+    "node": "^18 || ^20"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ]
+}
