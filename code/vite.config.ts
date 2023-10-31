@@ -20,7 +20,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  plugins: [dts()],
+  plugins: [dts({ insertTypesEntry: true })],
   test: {
     globals: true,
   },
