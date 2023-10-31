@@ -37,6 +37,7 @@
     "images",
     "CHANGELOG.md",
     "LICENSE",
+    "package.json",
     "README.md"
   ],
   "scripts": {
