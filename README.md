@@ -15,7 +15,7 @@
   <a href="#how-to-use">How To Use</a>
 </p>
 <p align="center">
-    <a href="#changelog">Changelog</a> •
+  <a href="#changelog">Changelog</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#security-vulnerabilities">Security Vulnerabilities</a> •
   <a href="#Sponsor">Sponsor</a> •
