@@ -18,7 +18,7 @@
   <a href="#changelog">Changelog</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#security-vulnerabilities">Security Vulnerabilities</a> •
-  <a href="#Sponsor">Sponsor</a> •
+  <a href="#sponsor">Sponsor</a> •
   <a href="#license">License</a>
 </p>
 
@@ -33,9 +33,11 @@ This repository is a GitHub Template for scaffolding a TypeScript library npm pa
 - GitHub Actions for pull requests, publishing to npm registry & GitHub Packages.
 - GitHub community standards documents and policies.
 
+---
+
 #### Tech Stack
 
-The tech stack used in this repository:
+The tech stack included in this repository:
 
 - Node.js
 - Vite
@@ -43,17 +45,24 @@ The tech stack used in this repository:
 - TypeScript
 - ESLint
 - Prettier
+- GitHub Actions
+- Docker
 
 ## Disclaimer
 
-The Docker Compose file included in this repository was configured for local environments. Do not deploy the Docker Compose file in production environments.
+> [!IMPORTANT]  
+> The Docker Compose file included in this repository was configured for local environments. Do not deploy the Docker Compose file in production environments.
 
 ## Getting Started
 
-This repository uses [Node.js](https://nodejs.org) and [Yarn](https://yarnpkg.com/) or [Docker](https://www.docker.com/). You will need to make sure your system meets the following prerequisites:
+This repository requires the use of [Node.js](https://nodejs.org) and a Node.js package manager e.g. [Yarn](https://yarnpkg.com/) or alternately, you can use [Docker](https://www.docker.com/). You will need to make sure your system meets the following prerequisites:
 
 - Node >= 18.0.0
 - Docker Engine >= 20.10.00
+
+---
+
+#### Download Repository
 
 There are a few ways to start using this repository. You can begin by following any of the steps:
 
@@ -81,11 +90,13 @@ There are a few ways to start using this repository. You can begin by following 
 
 Below, we have outlined the main steps you would need to take to get started.
 
-#### Package code
+#### Directory Structure
 
 The package code is located in the `./code` directory. This repository includes a sum function for adding numbers and test examples using Vitest.
 
-#### Installation
+---
+
+#### Install Dependencies
 
 You can run the `yarn install` command or use the Makefile `local-setup` target to install your package dependencies.
 
@@ -97,11 +108,18 @@ $ yarn install
 $ make local-setup
 ```
 
-**Please note:** The Makefile `local-setup` target utilizes Docker.
+> [!NOTE]  
+> The Makefile `local-setup` target utilizes Docker. Please have Docker installed and running before executing the make command.
 
-#### Development
+---
 
-During development, you can link your package to a project. This is often useful to test out new features or when trying to debug an issue. To link your package from within an app:
+#### Package Development
+
+During development, you can link your package to a project. This is often useful to test out new features or when trying to debug an issue. 
+
+###### Link Package
+
+To link your package from within an app:
 
 - **From your package**:  
   Run the `link` command to register the package.
@@ -116,6 +134,8 @@ During development, you can link your package to a project. This is often useful
   ```shell
   $ yarn link "package-name"
   ```
+
+###### Unlink Package
 
 Once you have completed developing your package, you will need to `unlink` both your library and test app projects.
 
@@ -133,9 +153,11 @@ Once you have completed developing your package, you will need to `unlink` both 
   $ yarn unlink
   ```
 
-#### Testing
+---
 
-**_Vite Typescript Package Toolkit_** includes Vitest & Vitest UI. You can run the following command to access the Vitest UI.
+#### Testing Frameworks
+
+This repository includes [Vitest](https://vitest.dev/) & [Vitest UI](https://vitest.dev/guide/ui). You can run the following command to access the Vitest UI.
 
 ```shell
 $ yarn run test:ui
@@ -145,9 +167,12 @@ $ yarn run test:ui
 $ docker compose up
 ```
 
-Then you can visit the Vitest UI in your web browser at [http://localhost:51204/**vitest**/](http://localhost:51204/__vitest__/).
+Then you can visit the Vitest UI in your web browser at [http://localhost:51204/\__vitest__/](http://localhost:51204/__vitest__/).
 
-You can override the variables in the Docker Compose file, e.g. container name, network name and port mapping. This repository includes a DotEnv example file (`.env.example`) that you can copy to create your DotEnv file and override the Docker Compose variables.
+> [!TIP]
+> You can override the variables in the Docker Compose file, e.g. container name, network name and port mapping. This repository includes a DotEnv example file (`.env.example`) that you can copy to create your DotEnv file and override the Docker Compose variables.
+
+---
 
 #### GitHub Actions
 
@@ -192,7 +217,9 @@ The publish to GitHub Packages workflow is similar to the publish to npm registr
 
 </details>
 
-#### Publishing
+---
+
+#### Publishing Package
 
 Before you publish your package, there are a few things you need to do.
 
