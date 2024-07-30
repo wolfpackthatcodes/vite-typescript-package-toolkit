@@ -57,7 +57,7 @@ The tech stack included in this repository:
 
 This repository requires the use of [Node.js](https://nodejs.org) and a Node.js package manager e.g. [Yarn](https://yarnpkg.com/) or alternately, you can use [Docker](https://www.docker.com/). You will need to make sure your system meets the following prerequisites:
 
-- Node >= 18.0.0
+- Node >= 20.0.0
 - Docker Engine >= 20.10.00
 
 ---
@@ -190,7 +190,7 @@ The Pull Request workflow only runs when a `pull_request` event's activity type 
 The Pull Request workflow will run the following jobs:
 
 - Run linting & formatting
-- Run type checking & tests (Node 18.x & 20.x)
+- Run type checking & tests (Node 20.x, 21.x & 22.x)
 
 </details>
 
