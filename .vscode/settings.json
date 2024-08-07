@@ -8,7 +8,7 @@
   "files.associations": {
     ".env": "dotenv"
   },
-  "prettier.configPath": "./code/.prettierrc",
+  "prettier.configPath": "./code/prettier.config.js",
   "prettier.ignorePath": "./code/.prettierignore",
   "prettier.printWidth": 120
 }
