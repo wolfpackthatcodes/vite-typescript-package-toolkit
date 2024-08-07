@@ -23,8 +23,6 @@ endif
 #
 # The `local-setup` target executes the Yarn `install`
 # command to install package's dependencies.
-#
-# https://vitejs.dev/guide/#scaffolding-your-first-vite-project
 #--------------------------------------------------------------------------
 local-setup:
 	exec docker run -it --rm --name vite-toolkit \
