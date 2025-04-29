@@ -9,6 +9,10 @@ const config = {
   singleQuote: true,
   printWidth: 120,
   bracketSpacing: true,
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  importOrderSortSpecifiers: true,
+  importOrderGroupNamespaceSpecifiers: true,
+  importOrderParserPlugins: ['typescript'],
 };
 
 export default config;
