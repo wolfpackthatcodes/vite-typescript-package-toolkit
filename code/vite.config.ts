@@ -1,9 +1,8 @@
 /// <reference types="vitest" />
 // Configure Vitest (https://vitest.dev/config/)
-
-import { defineConfig } from 'vitest/config';
-import dts from 'vite-plugin-dts';
 import path from 'path';
+import dts from 'vite-plugin-dts';
+import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/guide/build.html#library-mode
 export default defineConfig({
